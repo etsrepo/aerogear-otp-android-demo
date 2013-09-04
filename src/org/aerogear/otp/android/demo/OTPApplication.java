@@ -71,9 +71,4 @@ public class OTPApplication extends Application {
         pipe.readWithFilter(filter, callback);
     }
 
-    public void logout(Callback<Void> callback) {
-        AuthenticationModule authModule = authenticator.get("login");
-        authModule.logout(callback);
-    }
-
 }
