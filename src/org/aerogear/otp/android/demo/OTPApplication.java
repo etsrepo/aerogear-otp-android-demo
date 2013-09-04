@@ -19,6 +19,7 @@ package org.aerogear.otp.android.demo;
 
 import android.app.Activity;
 import android.app.Application;
+import android.support.v4.app.FragmentActivity;
 import org.jboss.aerogear.android.Callback;
 import org.jboss.aerogear.android.Pipeline;
 import org.jboss.aerogear.android.ReadFilter;
@@ -48,12 +49,12 @@ public class OTPApplication extends Application {
         authenticator.auth("login", config);
     }
 
-    public void login(Activity activity, String username, String password, Callback<HeaderAndBody> callback) {
+    public void login(FragmentActivity activity, String username, String password, Callback<HeaderAndBody> callback) {
         AuthenticationModule authModule = authenticator.get("login", activity);
         authModule.login(username, password, callback);
     }
 
-    public void retrieveOTPPath(Activity activity, Callback<List<OTPUser>> callback) throws Exception {
+    public void retrieveOTPPath(FragmentActivity activity, Callback<List<OTPUser>> callback) throws Exception {
         AuthenticationModule authModule = authenticator.get("login", activity);
 
         URL url = new URL(baseURL);
