@@ -65,24 +65,24 @@ public class OTPQRCodeActivity extends Activity {
 
     private void showAlertDialog() {
         new AlertDialog.Builder(this)
-            .setTitle(getString(R.string.warning))
-            .setMessage(getString(R.string.error_occurred_qrcode))
-            .setPositiveButton(getString(R.string.yes), new DialogInterface.OnClickListener() {
-                public void onClick(DialogInterface di, int arg) {
-                    scanBarcode();
-                }
-            })
-            .setNegativeButton(getString(R.string.no), new DialogInterface.OnClickListener() {
-                public void onClick(DialogInterface di, int arg) {
-                    finish();
-                }
-            }).show()
-            .setOnDismissListener(new DialogInterface.OnDismissListener() {
-                @Override
-                public void onDismiss(DialogInterface dialogInterface) {
-                    finish();
-                }
-            });
+                .setTitle(getString(R.string.warning))
+                .setMessage(getString(R.string.error_occurred_qrcode))
+                .setPositiveButton(getString(R.string.yes), new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface di, int arg) {
+                        scanBarcode();
+                    }
+                })
+                .setNegativeButton(getString(R.string.no), new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface di, int arg) {
+                        finish();
+                    }
+                }).show()
+                .setOnDismissListener(new DialogInterface.OnDismissListener() {
+                    @Override
+                    public void onDismiss(DialogInterface dialogInterface) {
+                        finish();
+                    }
+                });
     }
 
 }

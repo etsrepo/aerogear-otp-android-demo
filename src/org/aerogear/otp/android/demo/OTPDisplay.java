@@ -70,15 +70,15 @@ public class OTPDisplay extends Activity {
         String otpauth = getIntent().getStringExtra("otpauth");
         Uri otpUri = Uri.parse(otpauth);
 
-        name   = otpUri.getQueryParameter("");
+        name = otpUri.getQueryParameter("");
         secret = otpUri.getQueryParameter("secret");
 
         totp = new Totp(secret);
     }
 
     private void findComponents() {
-        totpDisplay = (TextView)    findViewById(R.id.totp);
-        nameDisplay = (TextView)    findViewById(R.id.name);
+        totpDisplay = (TextView) findViewById(R.id.totp);
+        nameDisplay = (TextView) findViewById(R.id.name);
         progressBar = (ProgressBar) findViewById(R.id.progress);
     }
 
