@@ -17,7 +17,6 @@
  
 package org.aerogear.otp.android.demo;
 
-import android.app.Activity;
 import android.app.Application;
 import android.support.v4.app.FragmentActivity;
 import org.jboss.aerogear.android.Callback;
@@ -68,7 +67,7 @@ public class OTPApplication extends Application {
 
         ReadFilter filter = new ReadFilter();
         filter.setLinkUri(new URI("/aerogear-controller-demo/auth/otp/secret"));
-        pipe.readWithFilter(filter, callback);
+        pipe.read(filter, callback);
     }
 
 }
