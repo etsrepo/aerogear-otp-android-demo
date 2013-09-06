@@ -57,6 +57,7 @@ public class OTPQRCodeActivity extends Activity {
                 Intent intent = new Intent(this, OTPDisplay.class);
                 intent.putExtra("otpauth", otpauth);
                 startActivity(intent);
+                finish();
             } else {
                 showAlertDialog();
             }

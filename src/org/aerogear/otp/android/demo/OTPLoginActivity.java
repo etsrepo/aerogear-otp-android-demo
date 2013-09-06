@@ -65,6 +65,7 @@ public class OTPLoginActivity extends FragmentActivity {
                                     Intent intent = new Intent(OTPLoginActivity.this, OTPDisplay.class);
                                     intent.putExtra("otpauth", data.get(0).getUri());
                                     startActivity(intent);
+                                    finish();
                                 }
 
                                 @Override
