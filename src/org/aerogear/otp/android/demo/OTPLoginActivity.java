@@ -52,7 +52,8 @@ public class OTPLoginActivity extends FragmentActivity {
                 String user = username.getText().toString();
                 String pass = password.getText().toString();
 
-                final ProgressDialog dialog = ProgressDialog.show(OTPLoginActivity.this, "Wait...", "Loging", true, false);
+                final ProgressDialog dialog = ProgressDialog.show(OTPLoginActivity.this, getString(R.string.wait),
+                        getString(R.string.loging), true, false);
 
                 application.login(OTPLoginActivity.this, user, pass, new AbstractFragmentActivityCallback<HeaderAndBody>() {
                     @Override
@@ -86,7 +87,7 @@ public class OTPLoginActivity extends FragmentActivity {
     }
 
     private void displayErrorMessage(FragmentActivity activity, Exception e, ProgressDialog dialog) {
-        Log.e("Login", "An error occurrence", e);
+        Log.e(getString(R.string.login), getString(R.string.error_occurrence), e);
         dialog.dismiss();
         Toast.makeText(activity, e.getMessage(), Toast.LENGTH_SHORT).show();
     }

@@ -19,12 +19,12 @@
             android:paddingBottom="50dp"
             android:textSize="20dp"
             android:textStyle="bold"
-            android:text="OTP Demo"/>
+            android:text="@string/project_title"/>
 
     <TextView
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:text="Username:"/>
+            android:text="@string/username"/>
 
     <EditText
             android:id="@+id/username"
@@ -35,7 +35,7 @@
     <TextView
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:text="Password:"/>
+            android:text="@string/password"/>
 
     <EditText
             android:id="@+id/password"
@@ -47,7 +47,7 @@
             android:id="@+id/login"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:text="Login"/>
+            android:text="@string/login"/>
 
 </LinearLayout>
 

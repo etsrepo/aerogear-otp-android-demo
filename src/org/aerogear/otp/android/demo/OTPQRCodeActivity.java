@@ -65,14 +65,14 @@ public class OTPQRCodeActivity extends Activity {
 
     private void showAlertDialog() {
         new AlertDialog.Builder(this)
-            .setTitle("Warning")
-            .setMessage("An error occurred while trying to read the QRCode. Do you want to try again?")
-            .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+            .setTitle(getString(R.string.warning))
+            .setMessage(getString(R.string.error_occurred_qrcode))
+            .setPositiveButton(getString(R.string.yes), new DialogInterface.OnClickListener() {
                 public void onClick(DialogInterface di, int arg) {
                     scanBarcode();
                 }
             })
-            .setNegativeButton("No", new DialogInterface.OnClickListener() {
+            .setNegativeButton(getString(R.string.no), new DialogInterface.OnClickListener() {
                 public void onClick(DialogInterface di, int arg) {
                     finish();
                 }
