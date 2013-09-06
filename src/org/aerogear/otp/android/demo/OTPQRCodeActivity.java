@@ -76,7 +76,13 @@ public class OTPQRCodeActivity extends Activity {
                 public void onClick(DialogInterface di, int arg) {
                     finish();
                 }
-            }).show();
+            }).show()
+            .setOnDismissListener(new DialogInterface.OnDismissListener() {
+                @Override
+                public void onDismiss(DialogInterface dialogInterface) {
+                    finish();
+                }
+            });
     }
 
 }
