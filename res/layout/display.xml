@@ -10,6 +10,7 @@
             android:layout_width="250dp"
             android:layout_height="80dp"
             android:layout_gravity="center"
+            android:contentDescription="@string/aerogear_logo_content_description"
             android:src="@drawable/aerogear_logo"/>
 
     <TextView
