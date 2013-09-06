@@ -30,7 +30,7 @@
             android:id="@+id/username"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-                android:text="john"/>
+            android:inputType="text"/>
 
     <TextView
             android:layout_width="fill_parent"
@@ -41,8 +41,7 @@
             android:id="@+id/password"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:inputType="textPassword"
-            android:text="123"/>
+            android:inputType="textPassword"/>
 
     <Button
             android:id="@+id/login"
