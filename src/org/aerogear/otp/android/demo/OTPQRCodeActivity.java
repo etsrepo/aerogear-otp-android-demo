@@ -65,7 +65,7 @@ public class OTPQRCodeActivity extends Activity {
 
     private void showAlertDialog() {
         new AlertDialog.Builder(this)
-            .setTitle("Aviso")
+            .setTitle("Warning")
             .setMessage("An error occurred while trying to read the QRCode. Do you want to try again?")
             .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                 public void onClick(DialogInterface di, int arg) {
