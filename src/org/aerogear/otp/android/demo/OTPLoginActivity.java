@@ -52,7 +52,7 @@ public class OTPLoginActivity extends FragmentActivity {
                 String user = username.getText().toString();
                 String pass = password.getText().toString();
 
-                final ProgressDialog dialog = ProgressDialog.show(OTPLoginActivity.this, "Wait...", "Loging", true, true);
+                final ProgressDialog dialog = ProgressDialog.show(OTPLoginActivity.this, "Wait...", "Loging", true, false);
 
                 application.login(OTPLoginActivity.this, user, pass, new AbstractFragmentActivityCallback<HeaderAndBody>() {
                     @Override
@@ -64,7 +64,6 @@ public class OTPLoginActivity extends FragmentActivity {
                                     Intent intent = new Intent(OTPLoginActivity.this, OTPDisplay.class);
                                     intent.putExtra("otpauth", data.get(0).getUri());
                                     startActivity(intent);
-                                    dialog.dismiss();
                                 }
 
                                 @Override
@@ -80,7 +79,6 @@ public class OTPLoginActivity extends FragmentActivity {
                     @Override
                     public void onFailure(Exception e) {
                         displayErrorMessage(getFragmentActivity(), e, dialog);
-                        dialog.dismiss();
                     }
                 });
             }
@@ -90,7 +88,7 @@ public class OTPLoginActivity extends FragmentActivity {
     private void displayErrorMessage(FragmentActivity activity, Exception e, ProgressDialog dialog) {
         Log.e("Login", "An error occurrence", e);
         dialog.dismiss();
-        Toast.makeText(activity, "Login failed", Toast.LENGTH_SHORT).show();
+        Toast.makeText(activity, e.getMessage(), Toast.LENGTH_SHORT).show();
     }
 
 }
