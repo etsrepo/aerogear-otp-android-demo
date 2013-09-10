@@ -50,7 +50,7 @@
     <scm>
         <connection>scm:git:git@github.com:aerogear/aerogear-otp-android-demo.git</connection>
         <developerConnection>scm:git:git@github.com:aerogear/aerogear-otp-android-demo.git</developerConnection>
-        <url>git@github.com:aerogear/aerogear-otp-android-demo.git</url>
+        <url>https://github.com/aerogear/aerogear-otp-android-demo</url>
     </scm>
 
     <properties>
