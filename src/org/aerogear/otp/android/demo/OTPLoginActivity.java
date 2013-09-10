@@ -87,7 +87,7 @@ public class OTPLoginActivity extends FragmentActivity {
     }
 
     private void displayErrorMessage(FragmentActivity activity, Exception e, ProgressDialog dialog) {
-        Log.e(getString(R.string.login), getString(R.string.error_occurrence), e);
+        Log.e(getString(R.string.login), getString(R.string.error_occurred), e);
         dialog.dismiss();
         Toast.makeText(activity, e.getMessage(), Toast.LENGTH_SHORT).show();
     }

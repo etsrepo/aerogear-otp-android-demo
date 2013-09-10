@@ -9,7 +9,7 @@
     <string name="using_qrcode">Using QR Code</string>
     <string name="wait">Wait...</string>
     <string name="loging">Loging</string>
-    <string name="error_occurrence">An error occurrence</string>
+    <string name="error_occurred">Something went wrong</string>
     <string name="warning">Warning</string>
     <string name="error_occurred_qrcode">An error occurred while trying to read the QRCode. Do you want to try again?
     </string>
