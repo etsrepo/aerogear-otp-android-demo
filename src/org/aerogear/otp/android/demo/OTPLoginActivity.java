@@ -16,7 +16,6 @@
  */
 package org.aerogear.otp.android.demo;
 
-import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
@@ -27,10 +26,9 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 import org.jboss.aerogear.android.http.HeaderAndBody;
-import org.jboss.aerogear.android.pipeline.AbstractActivityCallback;
+import org.jboss.aerogear.android.pipeline.support.AbstractFragmentActivityCallback;
 
 import java.util.List;
-import org.jboss.aerogear.android.pipeline.support.AbstractFragmentActivityCallback;
 
 public class OTPLoginActivity extends FragmentActivity {
 
