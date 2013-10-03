@@ -1,12 +1,12 @@
 /**
  * JBoss, Home of Professional Open Source
- * Copyright Red Hat, Inc., and individual contributors
+ * Copyright Red Hat, Inc., and individual contributors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
+ * 	http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -14,24 +14,23 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
- 
 package org.aerogear.otp.android.demo;
 
-import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
-import org.jboss.aerogear.android.Callback;
 import org.jboss.aerogear.android.http.HeaderAndBody;
+import org.jboss.aerogear.android.pipeline.support.AbstractFragmentActivityCallback;
 
 import java.util.List;
 
-public class OTPLoginActivity extends Activity {
+public class OTPLoginActivity extends FragmentActivity {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -50,45 +49,45 @@ public class OTPLoginActivity extends Activity {
                 String user = username.getText().toString();
                 String pass = password.getText().toString();
 
-                final ProgressDialog dialog = ProgressDialog.show(OTPLoginActivity.this, "Wait...", "Loging", true, true);
+                final ProgressDialog dialog = ProgressDialog.show(OTPLoginActivity.this, getString(R.string.wait),
+                        getString(R.string.loging), true, false);
 
-                application.login(user, pass, new Callback<HeaderAndBody>() {
+                application.login(OTPLoginActivity.this, user, pass, new AbstractFragmentActivityCallback<HeaderAndBody>() {
                     @Override
                     public void onSuccess(HeaderAndBody data) {
                         try {
-                            application.retrieveOTPPath(new Callback<List<OTPUser>>() {
+                            application.retrieveOTPPath(OTPLoginActivity.this, new AbstractFragmentActivityCallback<List<OTPUser>>() {
                                 @Override
                                 public void onSuccess(List<OTPUser> data) {
                                     Intent intent = new Intent(OTPLoginActivity.this, OTPDisplay.class);
                                     intent.putExtra("otpauth", data.get(0).getUri());
                                     startActivity(intent);
-                                    dialog.dismiss();
+                                    finish();
                                 }
 
                                 @Override
                                 public void onFailure(Exception e) {
-                                    displayErrorMessage(e, dialog);
+                                    displayErrorMessage(getFragmentActivity(), e, dialog);
                                 }
                             });
                         } catch (Exception e) {
-                            displayErrorMessage(e, dialog);
+                            displayErrorMessage(getFragmentActivity(), e, dialog);
                         }
                     }
 
                     @Override
                     public void onFailure(Exception e) {
-                        displayErrorMessage(e, dialog);
-                        dialog.dismiss();
+                        displayErrorMessage(getFragmentActivity(), e, dialog);
                     }
                 });
             }
         });
     }
 
-    private void displayErrorMessage(Exception e, ProgressDialog dialog) {
-        Log.e("Login", "An error occurrence", e);
-        Toast.makeText(this, "Login failed", Toast.LENGTH_SHORT).show();
+    private void displayErrorMessage(FragmentActivity activity, Exception e, ProgressDialog dialog) {
+        Log.e(getString(R.string.login), getString(R.string.error_occurred), e);
         dialog.dismiss();
+        Toast.makeText(activity, e.getMessage(), Toast.LENGTH_SHORT).show();
     }
 
 }

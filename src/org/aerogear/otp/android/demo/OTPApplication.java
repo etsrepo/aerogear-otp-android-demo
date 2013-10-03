@@ -1,12 +1,12 @@
 /**
  * JBoss, Home of Professional Open Source
- * Copyright Red Hat, Inc., and individual contributors
+ * Copyright Red Hat, Inc., and individual contributors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
+ * 	http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -14,10 +14,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
- 
 package org.aerogear.otp.android.demo;
 
 import android.app.Application;
+import android.support.v4.app.FragmentActivity;
 import org.jboss.aerogear.android.Callback;
 import org.jboss.aerogear.android.Pipeline;
 import org.jboss.aerogear.android.ReadFilter;
@@ -34,24 +34,27 @@ import java.util.List;
 
 public class OTPApplication extends Application {
 
-    private AuthenticationModule authModule;
     private String baseURL = "http://controller-aerogear.rhcloud.com/aerogear-controller-demo";
+    private Authenticator authenticator;
 
     @Override
     public void onCreate() {
         super.onCreate();
 
-        Authenticator auth = new Authenticator(baseURL);
+        authenticator = new Authenticator(baseURL);
         AuthenticationConfig config = new AuthenticationConfig();
         config.setLoginEndpoint("/login");
-        authModule = auth.auth("login", config);
+        authenticator.auth("login", config);
     }
 
-    public void login(String username, String password, Callback<HeaderAndBody> callback) {
+    public void login(FragmentActivity activity, String username, String password, Callback<HeaderAndBody> callback) {
+        AuthenticationModule authModule = authenticator.get("login", activity);
         authModule.login(username, password, callback);
     }
 
-    public void retrieveOTPPath(Callback<List<OTPUser>> callback) throws Exception {
+    public void retrieveOTPPath(FragmentActivity activity, Callback<List<OTPUser>> callback) throws Exception {
+        AuthenticationModule authModule = authenticator.get("login", activity);
+
         URL url = new URL(baseURL);
 
         Pipeline pipeline = new Pipeline(url);
@@ -63,11 +66,7 @@ public class OTPApplication extends Application {
 
         ReadFilter filter = new ReadFilter();
         filter.setLinkUri(new URI("/aerogear-controller-demo/auth/otp/secret"));
-        pipe.readWithFilter(filter, callback);
-    }
-
-    public void logout(Callback<Void> callback) {
-        authModule.logout(callback);
+        pipe.read(filter, callback);
     }
 
 }
