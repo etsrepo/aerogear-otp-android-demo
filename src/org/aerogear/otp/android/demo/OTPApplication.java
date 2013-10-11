@@ -34,7 +34,7 @@ import java.util.List;
 
 public class OTPApplication extends Application {
 
-    private String baseURL = "http://controller-aerogear.rhcloud.com/aerogear-controller-demo";
+    private String baseURL = "http://jaxrs-sblanc.rhcloud.com/rest";
     private Authenticator authenticator;
 
     @Override
@@ -43,7 +43,7 @@ public class OTPApplication extends Application {
 
         authenticator = new Authenticator(baseURL);
         AuthenticationConfig config = new AuthenticationConfig();
-        config.setLoginEndpoint("/login");
+        config.setLoginEndpoint("/auth/login");
         authenticator.auth("login", config);
     }
 
@@ -60,13 +60,12 @@ public class OTPApplication extends Application {
         Pipeline pipeline = new Pipeline(url);
 
         PipeConfig pipeConfig = new PipeConfig(url, OTPUser.class);
+        pipeConfig.setEndpoint("/auth/otp/secret");
         pipeConfig.setAuthModule(authModule);
 
         Pipe<OTPUser> pipe = pipeline.pipe(OTPUser.class, pipeConfig);
 
-        ReadFilter filter = new ReadFilter();
-        filter.setLinkUri(new URI("/aerogear-controller-demo/auth/otp/secret"));
-        pipe.read(filter, callback);
+        pipe.read(callback);
     }
 
 }
